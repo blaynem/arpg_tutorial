@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: int = 100
+@export var speed: int = 60
 @onready var animations = $AnimationPlayer
 
 @export var maxHealth: int = 3
@@ -8,23 +8,45 @@ extends CharacterBody2D
 @onready var effects = $Effects
 @onready var hurtBox = $hurtBox
 @onready var hurtTimer = $Effects/hurtTimer
+@onready var weapon = $weapon
 
 @export var knockbackPower: int = 500
 
 @export var inventory: Inventory
 
 var isHurt: bool = false
+var lastAnimationDirection: String = "Down"
+
+var isAttacking: bool = false
+
 
 signal healthChanged
 
 func _ready():
 	effects.play("RESET")
+	weapon.visible = false
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right","ui_up","ui_down")
 	velocity = moveDirection*speed
+	
+	if Input.is_action_just_pressed("attack"):
+		attack()
+
+func attack():
+	animations.play("attack" + lastAnimationDirection)
+	isAttacking = true
+	weapon.visible = true
+	await animations.animation_finished
+	isAttacking = false
+	weapon.visible = false
+	# Set animation back to standing animation. Though this could likely be refactored into something cleaner
+	animations.play("walk" + lastAnimationDirection)
+	animations.stop()
 
 func updateAnimation():
+	if isAttacking: return
+
 	if velocity.length() == 0:
 		animations.stop()
 	else:
@@ -34,6 +56,7 @@ func updateAnimation():
 		elif velocity.y < 0: direction = "Up"
 		
 		animations.play("walk" + direction)
+		lastAnimationDirection = direction
 
 func handleCollision():
 	for i in get_slide_collision_count():
