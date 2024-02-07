@@ -19,7 +19,6 @@ var lastAnimationDirection: String = "Down"
 
 var isAttacking: bool = false
 
-
 signal healthChanged
 
 func _ready():
@@ -33,13 +32,16 @@ func handleInput():
 	if Input.is_action_just_pressed("attack"):
 		attack()
 
+# The way we got the attack to hit the "hitBox" is by going into Sword scene, then Inspector > Collision.
+# Creating a new Layer Name for "hitBox" on layer 3. Then assigning to Layer 3 only, not mask.
+# Then inside of Slime scene we set the "hurtBox" to only layer 3 of the Mask, not layer.
 func attack():
 	animations.play("attack" + lastAnimationDirection)
 	isAttacking = true
-	weapon.visible = true
+	weapon.enable()
 	await animations.animation_finished
 	isAttacking = false
-	weapon.visible = false
+	weapon.disable()
 	# Set animation back to standing animation. Though this could likely be refactored into something cleaner
 	animations.play("walk" + lastAnimationDirection)
 	animations.stop()
