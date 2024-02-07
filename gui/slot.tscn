@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://crk3clb73ojv2"]
+[gd_scene load_steps=4 format=3 uid="uid://crk3clb73ojv2"]
 
 [ext_resource type="Script" path="res://gui/slot.gd" id="1_ap2kt"]
 [ext_resource type="Texture2D" uid="uid://jiusgwu2jqw1" path="res://art/inventorySlot.png" id="1_lw7nn"]
+[ext_resource type="FontFile" uid="uid://cpc0snkgudvsu" path="res://art/NormalFont.ttf" id="3_tigys"]
 
 [node name="Slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -26,3 +27,15 @@ offset_bottom = 20.0
 layout_mode = 2
 
 [node name="item" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 9.0
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_tigys")
+theme_override_font_sizes/font_size = 8
+text = "99"
+horizontal_alignment = 2
