@@ -1,20 +1,21 @@
 extends CharacterBody2D
 
-@export var speed: int = 30
+@export var speed: int = 100
 @onready var animations = $AnimationPlayer
 
 @export var maxHealth: int = 3
 @onready var currentHealth: int = maxHealth
 @onready var effects = $Effects
+@onready var hurtBox = $hurtBox
 @onready var hurtTimer = $Effects/hurtTimer
 
 @export var knockbackPower: int = 500
 
+@export var inventory: Inventory
+
 var isHurt: bool = false
 
 signal healthChanged
-
-var enemyCollisions = []
 
 func _ready():
 	effects.play("RESET")
@@ -46,8 +47,9 @@ func _physics_process(delta):
 	handleCollision()
 	updateAnimation()
 	if !isHurt:
-		for enemyArea in enemyCollisions:
-			hurtByEnemy(enemyArea)
+		for area in hurtBox.get_overlapping_areas():
+			if area.name == "hitBox":
+				hurtByEnemy(area)
 
 func hurtByEnemy(area):
 	currentHealth -= 1
@@ -64,15 +66,11 @@ func hurtByEnemy(area):
 	effects.play("RESET")
 	isHurt = false
 
-func _on_hurt_box_area_entered(area):
-	if area.name == "hitBox":
-		enemyCollisions.append(area)
-
 func knockback(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
 	velocity = knockbackDirection
 	move_and_slide()
 
-
-func _on_hurt_box_area_exited(area):
-	enemyCollisions.erase(area)
+func _on_hurt_box_area_entered(area):
+	if area.has_method("collect"):
+		area.collect(inventory)

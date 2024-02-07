@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://xgsdfrcy0dyc"]
+[gd_scene load_steps=15 format=3 uid="uid://xgsdfrcy0dyc"]
 
 [ext_resource type="Texture2D" uid="uid://ru3ny0eo6mia" path="res://art/player sprite.png" id="1_cys1c"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_fdvtl"]
+[ext_resource type="Resource" uid="uid://kw6jims0e3qm" path="res://inventory/playerInventory.tres" id="2_xqul3"]
 
 [sub_resource type="Animation" id="Animation_dgv1d"]
 length = 0.001
@@ -99,6 +100,21 @@ _data = {
 "walkUp": SubResource("Animation_ap085")
 }
 
+[sub_resource type="Animation" id="Animation_1foks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_tmuh5"]
 resource_name = "hurtBlink"
 length = 0.4
@@ -117,21 +133,6 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 0.501961), Color(1, 0, 0, 0.501961), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1foks"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rbxti"]
 _data = {
 "RESET": SubResource("Animation_1foks"),
@@ -148,6 +149,8 @@ size = Vector2(13.7368, 11.388)
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_fdvtl")
+knockbackPower = 20000
+inventory = ExtResource("2_xqul3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
