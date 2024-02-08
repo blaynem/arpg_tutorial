@@ -98,4 +98,5 @@ func knockback(enemyVelocity: Vector2):
 
 func _on_hurt_box_area_entered(area):
 	if area.has_method("collect"):
+		var test = inventory
 		area.collect(inventory)

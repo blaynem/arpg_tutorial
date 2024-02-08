@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc5ar7y0sgpyi"]
+
+[ext_resource type="Script" path="res://resources/world_2.gd" id="1_7g6og"]
+[ext_resource type="PackedScene" uid="uid://b8geipu6lmq42" path="res://resources/entity/player/PlayerBase.tscn" id="1_ltjad"]
+[ext_resource type="PackedScene" uid="uid://efra6w34pgwx" path="res://resources/entity/enemy/EnemyBase.tscn" id="2_ou51o"]
+[ext_resource type="AudioStream" uid="uid://2gjj3i3g4m34" path="res://art/sound_effects/GameOver.wav" id="4_d4w2r"]
+
+[node name="world2" type="Node2D"]
+script = ExtResource("1_7g6og")
+
+[node name="PlayerBase" parent="." instance=ExtResource("1_ltjad")]
+position = Vector2(17, 25)
+hp = 5
+
+[node name="EnemyBase" parent="." instance=ExtResource("2_ou51o")]
+position = Vector2(108, 40)
+
+[node name="EnemyBase2" parent="." instance=ExtResource("2_ou51o")]
+position = Vector2(94, 87)
+
+[node name="EnemyBase3" parent="." instance=ExtResource("2_ou51o")]
+position = Vector2(185, 64)
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d4w2r")
+
+[connection signal="player_died" from="PlayerBase" to="." method="_on_player_base_player_died"]

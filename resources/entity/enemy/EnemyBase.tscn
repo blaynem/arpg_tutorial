@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://efra6w34pgwx"]
+
+[ext_resource type="PackedScene" uid="uid://c0oemwjnw3ado" path="res://resources/entity/EntityBase.tscn" id="1_q4prd"]
+[ext_resource type="Texture2D" uid="uid://c6qonn504dmwa" path="res://art/Slime3.png" id="2_aho54"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll0ti"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_wpkkx"]
+resource_name = "walkDown"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udt8a"]
+_data = {
+"walkDown": SubResource("Animation_wpkkx")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8wdb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lyoh"]
+radius = 9.0
+
+[node name="EnemyBase" instance=ExtResource("1_q4prd")]
+collision_layer = 2
+collision_mask = 19
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_aho54")
+offset = Vector2(0, -7)
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_ll0ti")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_udt8a")
+}
+
+[node name="HurtBox" parent="." index="3"]
+collision_layer = 2
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_i8wdb")
+
+[node name="HitBox" parent="." index="4"]
+collision_layer = 2
+monitoring = false
+damage = 10
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_5lyoh")
+
+[editable path="HurtBox"]
+[editable path="HitBox"]

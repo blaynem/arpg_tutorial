@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://c314s6g3thtjf"]
+
+[ext_resource type="PackedScene" uid="uid://bv4mncjbigwgp" path="res://resources/overlap/HitBox.tscn" id="1_cm00n"]
+[ext_resource type="Texture2D" uid="uid://cyjt6e3ybgdwb" path="res://art/BigShuriken.png" id="2_mpkwi"]
+[ext_resource type="Script" path="res://resources/projectiles/PlayerBigShuriken.gd" id="2_oxuaa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxj3j"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_uq0ac"]
+resource_name = "move"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pnhga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ewh5"]
+_data = {
+"RESET": SubResource("Animation_pnhga"),
+"move": SubResource("Animation_uq0ac")
+}
+
+[node name="PlayerBigShuriken" groups=["projectiles"] instance=ExtResource("1_cm00n")]
+collision_layer = 8
+collision_mask = 18
+script = ExtResource("2_oxuaa")
+SPEED = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_mpkwi")
+hframes = 2
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_xxj3j")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_6ewh5")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_PlayerBigShuriken_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_PlayerBigShuriken_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

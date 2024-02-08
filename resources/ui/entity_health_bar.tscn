@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://buiojmlhxqyfe"]
+
+[ext_resource type="Script" path="res://resources/ui/entity_health_bar.gd" id="1_77t6w"]
+
+[node name="EntityHealthBar" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_77t6w")
