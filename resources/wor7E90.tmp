@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc5ar7y0sgpyi"]
+[gd_scene load_steps=12 format=3 uid="uid://bc5ar7y0sgpyi"]
 
 [ext_resource type="Script" path="res://resources/world_2.gd" id="1_7g6og"]
 [ext_resource type="Texture2D" uid="uid://1ggml8c8kvug" path="res://art/TilesetNature.png" id="2_allxo"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://2gjj3i3g4m34" path="res://art/sound_effects/GameOver.wav" id="4_d4w2r"]
 [ext_resource type="PackedScene" uid="uid://b8geipu6lmq42" path="res://resources/entity/player/PlayerBase.tscn" id="5_w4baf"]
 [ext_resource type="Script" path="res://resources/Camera2D.gd" id="6_1tej4"]
+[ext_resource type="Script" path="res://resources/Label.gd" id="7_chrq4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ywncj"]
 texture = ExtResource("2_allxo")
@@ -2497,13 +2498,6 @@ position_smoothing_speed = 60.0
 script = ExtResource("6_1tej4")
 tilemap = NodePath("../..")
 
-[node name="Label" type="Label" parent="TileMap/PlayerBase/Camera2D"]
-offset_left = -152.0
-offset_top = -96.0
-offset_right = -112.0
-offset_bottom = -73.0
-text = "Kills: 0"
-
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 autostart = true
 
@@ -2518,6 +2512,15 @@ position = Vector2(432, 448)
 
 [node name="Position 4" type="Marker2D" parent="." groups=["spawn"]]
 position = Vector2(104, 448)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 104.0
+offset_bottom = 215.0
+text = "1
+"
+script = ExtResource("7_chrq4")
 
 [connection signal="died" from="TileMap/PlayerBase" to="." method="_on_player_base_died"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

@@ -97,5 +97,4 @@ func _on_hurt_box_area_entered(hitbox):
 		hitbox.destroy()
 
 func _on_Entity_died():
-	print(self.name)
 	die()
