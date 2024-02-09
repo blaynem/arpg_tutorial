@@ -93,7 +93,7 @@ func _on_hurt_box_area_entered(hitbox):
 		spawn_effect(EFFECT_HIT)
 		spawn_dmgIndicator(actual_damage)
 		
-	if hitbox.is_in_group("Projectile"):
+	if hitbox.is_in_group("Projectiles"):
 		hitbox.destroy()
 
 func _on_Entity_died():

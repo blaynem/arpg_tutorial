@@ -5,7 +5,7 @@ extends "res://resources/overlap/HitBox.gd"
 
 
 func _physics_process(delta):
-	animations.play("shoot")
+	animations.play("move")
 	var direction = Vector2.RIGHT.rotated(rotation)
 	global_position += SPEED * direction * delta
 
@@ -13,11 +13,11 @@ func destroy():
 	queue_free()
 
 
-func _on_PlayerBigShuriken_area_entered(area):
+func _on_Fireball_area_entered(area):
 	destroy()
 
 
-func _on_PlayerBigShuriken_body_entered(body):
+func _on_Fireball_body_entered(body):
 	destroy()
 
 
