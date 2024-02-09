@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://efra6w34pgwx"]
+[gd_scene load_steps=9 format=3 uid="uid://efra6w34pgwx"]
 
 [ext_resource type="PackedScene" uid="uid://c0oemwjnw3ado" path="res://resources/entity/EntityBase.tscn" id="1_q4prd"]
 [ext_resource type="Texture2D" uid="uid://c6qonn504dmwa" path="res://art/Slime3.png" id="2_aho54"]
+[ext_resource type="Script" path="res://resources/entity/enemy/EnemyBase.gd" id="2_wnoke"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ll0ti"]
 radius = 7.0
@@ -22,6 +23,9 @@ radius = 9.0
 [node name="EnemyBase" instance=ExtResource("1_q4prd")]
 collision_layer = 2
 collision_mask = 19
+script = ExtResource("2_wnoke")
+hp = null
+SPEED = 50
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_aho54")
@@ -55,6 +59,15 @@ damage = 10
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_5lyoh")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="6"]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="." index="7"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

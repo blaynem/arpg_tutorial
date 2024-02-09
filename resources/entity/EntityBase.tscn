@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://c1t6h7s1j1twc" path="res://art/healthbar_full.png" id="9_iwlwe"]
 
 [node name="EntityBase" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_7o8nw")
 hp = 100
 EFFECT_HIT = ExtResource("2_mrjjy")
