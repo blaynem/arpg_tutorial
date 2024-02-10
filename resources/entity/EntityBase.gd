@@ -60,13 +60,6 @@ func _set_hp_max(newMaxHp: int):
 		if healthbar:
 			healthbar.max_value = hp_max
 
-func receive_damage(base_damage: int):
-	var actual_damage = base_damage
-	actual_damage -= defense
-	
-	self.hp -= actual_damage
-	return actual_damage
-
 func receive_knockback(damage_source_pos: Vector2, received_damage:int):
 	if canBeKnockedBack:
 		var dir = damage_source_pos.direction_to((self.global_position))
@@ -88,16 +81,7 @@ func spawn_dmgIndicator(damage:int):
 		indicator.label.text = str(damage)
 
 func _on_hurt_box_area_entered(hitbox):
-	# if "damage" in hitbox:
-	# 	var base_damage = hitbox.damage
-	# 	var actual_damage = receive_damage(base_damage)
-		
-	# 	receive_knockback(hitbox.global_position, actual_damage)
-	# 	spawn_effect(EFFECT_HIT)
-	# 	spawn_dmgIndicator(actual_damage)
-		
-	if hitbox.is_in_group("Projectiles"):
-		hitbox.destroy()
+	pass
 
 func _on_Entity_died():
 	die()

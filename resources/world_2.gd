@@ -24,7 +24,7 @@ func _on_player_base_player_died():
 	gameOverSound.play()
 
 func create_enemy(enemy_name):
-	var enemy_data = enemy_loader.get_data_by_name(enemy_name)
+	var enemy_data = enemy_loader.get_data_by_id(enemy_name)
 	if not enemy_data:
 		return
 	# Example: Create enemy node and configure it using data

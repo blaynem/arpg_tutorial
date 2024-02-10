@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv4mncjbigwgp"]
+[gd_scene load_steps=3 format=3 uid="uid://bv4mncjbigwgp"]
 
 [ext_resource type="Script" path="res://resources/overlap/HitBox.gd" id="1_wsit3"]
 
-[node name="HitBox" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f2w0"]
+
+[node name="HitBox" type="Area2D" groups=["Projectiles"]]
+collision_layer = 8
+collision_mask = 19
 script = ExtResource("1_wsit3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8f2w0")
 debug_color = Color(0, 0.588235, 0.756863, 0.419608)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

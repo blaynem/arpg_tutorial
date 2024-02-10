@@ -18,17 +18,15 @@ static func get_instance():
 
 func get_enemy_data():
 	if not enemy_data:
-		var json = JSON.new()
 		var json_as_text = FileAccess.get_file_as_string(ENEMY_DATA_PATH)
 		var json_as_dict = JSON.parse_string(json_as_text)
 		if json_as_dict:
 			enemy_data = json_as_dict
 		else:
 			print("There was an error parsing the Enemy Data")
-
 	return enemy_data
 
-func get_data_by_name(enemy_name: String) -> Dictionary:
-	var loader = get_instance()
+func get_data_by_id(enemy_id: String) -> Dictionary:
+	var loader = EnemyLoader.get_instance()
 	var data = loader.get_enemy_data()
-	return data.get(enemy_name, null)
+	return data.get(enemy_id, null)

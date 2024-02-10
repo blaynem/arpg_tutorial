@@ -23,7 +23,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_uq0ac"]
-resource_name = "move"
+resource_name = "shoot"
 length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -42,11 +42,10 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ewh5"]
 _data = {
 "RESET": SubResource("Animation_pnhga"),
-"move": SubResource("Animation_uq0ac")
+"shoot": SubResource("Animation_uq0ac")
 }
 
-[node name="PlayerBigShuriken" groups=["Projectiles"] instance=ExtResource("1_cm00n")]
-collision_layer = 8
+[node name="PlayerBigShuriken" instance=ExtResource("1_cm00n")]
 collision_mask = 18
 script = ExtResource("2_oxuaa")
 SPEED = 100
@@ -58,13 +57,7 @@ hframes = 2
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_xxj3j")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_6ewh5")
 }
-
-[connection signal="area_entered" from="." to="." method="_on_PlayerBigShuriken_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_PlayerBigShuriken_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

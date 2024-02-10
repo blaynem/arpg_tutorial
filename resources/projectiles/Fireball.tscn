@@ -46,8 +46,7 @@ _data = {
 "shoot": SubResource("Animation_1l4g7")
 }
 
-[node name="Fireball" groups=["Projectiles"] instance=ExtResource("1_ecvs5")]
-collision_layer = 8
+[node name="Fireball" instance=ExtResource("1_ecvs5")]
 collision_mask = 18
 script = ExtResource("2_ykala")
 SPEED = 100
@@ -60,14 +59,8 @@ frame = 8
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_xxj3j")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" groups=["Projectile"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" groups=["Projectile"]]
 libraries = {
 "": SubResource("AnimationLibrary_6ewh5")
 }
 autoplay = "RESET"
-
-[connection signal="area_entered" from="." to="." method="_on_PlayerBigShuriken_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_PlayerBigShuriken_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

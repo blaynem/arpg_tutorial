@@ -37,23 +37,19 @@ func _set_enemy_data(data: Dictionary) -> void:
 	enemyStats = data
 
 
-func _on_hurt_box_area_entered(hitbox):
-	print(hitbox)
-	# Do something like this to see what kind of area entered the hurt box
-	# if area.is_in_group("Spell"):
-	#     # Access the spell data or perform other actiwons
-	#     var spell_name = area.get_spell_name()
-	#     print("Spell entered hurt box:", spell_name)
-	if "damage" in hitbox:
-		var base_damage = hitbox.damage
-		var actual_damage = receive_damage(base_damage)
-		
-		receive_knockback(hitbox.global_position, actual_damage)
-		spawn_effect(EFFECT_HIT)
-		spawn_dmgIndicator(actual_damage)
-		
+func calculateDamage(hitbox: Area2D):
 	if hitbox.is_in_group("Projectiles"):
-		hitbox.destroy()
+		hitbox.register_hit(hitbox)
+		# We also now have access to damage types here. So we can make a resistance system
+		var damageDone = hitbox.damage_dealt
+		var newHealth = hp - damageDone
+		_set_hp(newHealth)
+		spawn_effect(EFFECT_HIT)
+		spawn_dmgIndicator(damageDone)
+
+
+func _on_hurt_box_area_entered(hitbox):
+	var didDamage = calculateDamage(hitbox)
 
 func _on_timer_timeout():
 	#Makes new path every timeout
