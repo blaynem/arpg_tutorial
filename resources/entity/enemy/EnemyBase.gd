@@ -39,7 +39,7 @@ func _set_enemy_data(data: Dictionary) -> void:
 
 func calculateDamage(hitbox: Area2D):
 	if hitbox.is_in_group("Projectiles"):
-		hitbox.register_hit(hitbox)
+		hitbox.register_enemy_hit(hitbox)
 		# We also now have access to damage types here. So we can make a resistance system
 		var damageDone = hitbox.damage_dealt
 		var newHealth = hp - damageDone

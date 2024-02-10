@@ -23,7 +23,7 @@ func _on_thing_dead():
 func _on_player_base_player_died():
 	gameOverSound.play()
 
-func create_enemy(enemy_name):
+func create_enemy(enemy_name: String):
 	var enemy_data = enemy_loader.get_data_by_id(enemy_name)
 	if not enemy_data:
 		return

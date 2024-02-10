@@ -11,7 +11,6 @@ script = ExtResource("1_wsit3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8f2w0")
-disabled = true
 debug_color = Color(0, 0.588235, 0.756863, 0.419608)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

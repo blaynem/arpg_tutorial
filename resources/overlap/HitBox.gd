@@ -30,12 +30,27 @@ func destroy():
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	destroy()
 
-func register_hit(thing):
-	print("hit: ", thing)
+func register_enemy_hit(hitbox):
+	var thing = hitbox
+	var thing2 = thing.get_path() as String
+	if "rockthrow" in thing2.to_lower():
+		return
+	# We know this is called directly from EnemyBase
+	# So we know its not a tile, so dont break the projectile as it goes through all enemies.
 	destroy()
 
+# On enemy hit box..? but only sometimes?!
 func _on_area_entered(area):
-	register_hit(area)
+	pass
+	# TODO: Determine what this actually is getting hit on
+	#print("hit: ", area)
+	## This can be from a few different things.
+	#if area.is_in_group("Projectiles"):
+		#pass
+	#destroy()
 
+# Walls, and Tilemap things, occasionally an enemy though..
+# I think this has to do with the collisions thingy Monitoring / Monitorable. Figure that out.
+# easiest to test by letting a ton of enemies stack up around you then cast
 func _on_body_entered(body):
-	register_hit(body)
+	destroy()

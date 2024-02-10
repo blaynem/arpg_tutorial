@@ -55,6 +55,10 @@ shape = SubResource("RectangleShape2D_unhda")
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_ty5ay")
 
+[node name="VisibleOnScreenNotifier2D" parent="HitBox" index="1"]
+position = Vector2(-1.49012e-07, -7.5)
+scale = Vector2(0.8, 0.85)
+
 [node name="EntityHealthBar" parent="." instance=ExtResource("6_1hus0")]
 offset_left = -11.0
 offset_top = -21.0

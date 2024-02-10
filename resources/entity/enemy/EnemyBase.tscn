@@ -56,6 +56,9 @@ monitoring = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_5lyoh")
 
+[node name="VisibleOnScreenNotifier2D" parent="HitBox" index="1"]
+position = Vector2(0, -6)
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="6"]
 debug_enabled = true
 
