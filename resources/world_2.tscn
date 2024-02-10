@@ -2502,7 +2502,7 @@ script = ExtResource("1_7g6og")
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_d4w2r")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["Terrain"]]
 y_sort_enabled = true
 position = Vector2(256, 256)
 tile_set = SubResource("TileSet_uf1ac")
