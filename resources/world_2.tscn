@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bc5ar7y0sgpyi"]
+[gd_scene load_steps=20 format=3 uid="uid://bc5ar7y0sgpyi"]
 
 [ext_resource type="Script" path="res://resources/world_2.gd" id="1_7g6og"]
 [ext_resource type="Texture2D" uid="uid://1ggml8c8kvug" path="res://art/TilesetNature.png" id="2_allxo"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://2gjj3i3g4m34" path="res://art/sound_effects/GameOver.wav" id="4_d4w2r"]
 [ext_resource type="PackedScene" uid="uid://b8geipu6lmq42" path="res://resources/entity/player/PlayerBase.tscn" id="5_w4baf"]
 [ext_resource type="Script" path="res://resources/Camera2D.gd" id="6_1tej4"]
+[ext_resource type="PackedScene" uid="uid://cxxlrj5ntxpg" path="res://resources/projectiles/RockThrow.tscn" id="6_x620w"]
 [ext_resource type="Script" path="res://resources/SpellManager.gd" id="7_m6oqh"]
 [ext_resource type="Shader" path="res://art/SimpleWater.gdshader" id="8_hqjbg"]
 [ext_resource type="Texture2D" uid="uid://ii2ec1tklmgm" path="res://art/Godot_icon.svg" id="8_jreuf"]
@@ -2517,6 +2518,7 @@ layer_1/tile_data = PackedInt32Array(1048560, 851969, 8, 1048561, 851969, 8, 104
 
 [node name="PlayerBase" parent="TileMap" node_paths=PackedStringArray("spellsManager") instance=ExtResource("5_w4baf")]
 position = Vector2(-40, 32)
+spell_scene = ExtResource("6_x620w")
 spellsManager = NodePath("../../SpellManager")
 
 [node name="Camera2D" type="Camera2D" parent="TileMap/PlayerBase" node_paths=PackedStringArray("tilemap")]

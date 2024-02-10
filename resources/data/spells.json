@@ -27,9 +27,9 @@
         "description": "Ice Spikes surround the caster and are shot out in all directions.",
         "type": "Ice",
         "maxDistance": 10,
-        "cooldown": 3,
+        "cooldown": 1,
         "castTime": 0,
-        "projectileSpeed": 200,
+        "projectileSpeed": 250,
         "damage": 5
     },
     "rockThrow": {

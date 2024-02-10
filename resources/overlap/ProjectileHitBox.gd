@@ -37,7 +37,7 @@ func _on_projectile_hit_enemy(projectile: Area2D, target: Node2D):
 	if projectile.projectile_id == "rockThrow":
 		pass
 	else:
-		destroy()
+		projectile.destroy()
 
 func _ready():
 	SignalBus.projectile_hit_target.connect(_on_projectile_hit_enemy)
@@ -50,7 +50,6 @@ func _physics_process(delta):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	pass
-
 
 func _on_body_entered(body):
 	if body.is_in_group("Terrain"):
