@@ -3,10 +3,10 @@ extends "res://resources/entity/EntityBase.gd"
 signal player_died
 
 # Options for spells: fireball , iceSpike, rockThrow, todo: energyBall
-const SPELL_ID = "rockThrow"
+const SPELL_ID = "fireball"
 #@export var spell_scene: PackedScene = preload("res://resources/projectiles/IceSpikes.tscn")
-#@export var spell_scene: PackedScene = preload("res://resources/projectiles/Fireball.tscn")
-@export var spell_scene: PackedScene = preload("res://resources/projectiles/RockThrow.tscn")
+@export var spell_scene: PackedScene = preload("res://resources/projectiles/Fireball.tscn")
+#@export var spell_scene: PackedScene = preload("res://resources/projectiles/RockThrow.tscn")
 
 @export var spellsManager: Node2D
 
@@ -14,8 +14,7 @@ const SPELL_ID = "rockThrow"
 @onready var attackTimer = $AttackTimer
 
 var lastAnimationDirection: String = "Down"
-const SPELL_DAMAGE: int = 200
-
+const SPELL_DAMAGE: int = 0
 
 func _ready():
 	if spellsManager:

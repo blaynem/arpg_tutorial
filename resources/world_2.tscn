@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bc5ar7y0sgpyi"]
+[gd_scene load_steps=19 format=3 uid="uid://bc5ar7y0sgpyi"]
 
 [ext_resource type="Script" path="res://resources/world_2.gd" id="1_7g6og"]
 [ext_resource type="Texture2D" uid="uid://1ggml8c8kvug" path="res://art/TilesetNature.png" id="2_allxo"]
@@ -6,8 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://2gjj3i3g4m34" path="res://art/sound_effects/GameOver.wav" id="4_d4w2r"]
 [ext_resource type="PackedScene" uid="uid://b8geipu6lmq42" path="res://resources/entity/player/PlayerBase.tscn" id="5_w4baf"]
 [ext_resource type="Script" path="res://resources/Camera2D.gd" id="6_1tej4"]
-[ext_resource type="PackedScene" uid="uid://cxxlrj5ntxpg" path="res://resources/projectiles/RockThrow.tscn" id="6_ioh38"]
 [ext_resource type="Script" path="res://resources/SpellManager.gd" id="7_m6oqh"]
+[ext_resource type="Shader" path="res://art/SimpleWater.gdshader" id="8_hqjbg"]
+[ext_resource type="Texture2D" uid="uid://ii2ec1tklmgm" path="res://art/Godot_icon.svg" id="8_jreuf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ywncj"]
 texture = ExtResource("2_allxo")
@@ -2468,6 +2469,33 @@ navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_ywncj")
 sources/2 = SubResource("TileSetAtlasSource_8kcc2")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qmil6"]
+frequency = 0.107
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eyyqi"]
+noise = SubResource("FastNoiseLite_qmil6")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hs4kw"]
+noise_type = 3
+seed = 6400
+frequency = 0.0186
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_swkjd"]
+noise = SubResource("FastNoiseLite_hs4kw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uq0ys"]
+resource_local_to_scene = true
+shader = ExtResource("8_hqjbg")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(0.011, -0.05)
+shader_parameter/distortion_strength = 0.023
+shader_parameter/top_color = Color(1, 1, 1, 0.54902)
+shader_parameter/tone_color = Color(0.619608, 0.807843, 1, 0.0431373)
+shader_parameter/light_start = 0.395
+shader_parameter/light_end = 0.664
+shader_parameter/noise1 = SubResource("NoiseTexture2D_eyyqi")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_swkjd")
+
 [node name="world2" type="Node2D"]
 script = ExtResource("1_7g6og")
 
@@ -2489,7 +2517,6 @@ layer_1/tile_data = PackedInt32Array(1048560, 851969, 8, 1048561, 851969, 8, 104
 
 [node name="PlayerBase" parent="TileMap" node_paths=PackedStringArray("spellsManager") instance=ExtResource("5_w4baf")]
 position = Vector2(-40, 32)
-spell_scene = ExtResource("6_ioh38")
 spellsManager = NodePath("../../SpellManager")
 
 [node name="Camera2D" type="Camera2D" parent="TileMap/PlayerBase" node_paths=PackedStringArray("tilemap")]
@@ -2525,6 +2552,13 @@ position = Vector2(104, 448)
 
 [node name="SpellManager" type="Node2D" parent="."]
 script = ExtResource("7_m6oqh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_uq0ys")
+position = Vector2(264, 262)
+scale = Vector2(0.5625, 0.535156)
+texture = ExtResource("8_jreuf")
 
 [connection signal="died" from="TileMap/PlayerBase" to="." method="_on_player_base_died"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
