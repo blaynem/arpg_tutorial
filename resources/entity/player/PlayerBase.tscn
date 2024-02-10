@@ -116,10 +116,7 @@ script = ExtResource("2_d7cve")
 PROJECTILE = ExtResource("3_oohb3")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -8)
 texture = ExtResource("4_rraig")
-hframes = 4
-vframes = 7
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-0.5, -7)
@@ -147,6 +144,14 @@ shape = SubResource("RectangleShape2D_osg00")
 [node name="AttackTimer" type="Timer" parent="." index="5"]
 wait_time = 0.2
 one_shot = true
+
+[node name="EntityHealthBar" parent="." index="6"]
+offset_top = -23.0
+offset_bottom = -11.0
+
+[node name="NameBar" parent="." index="7"]
+offset_top = -27.0
+offset_bottom = -4.0
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

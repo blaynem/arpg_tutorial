@@ -1,0 +1,44 @@
+{
+	"slime_1": {
+		"id": "slime_1",
+		"name": "Slime",
+		"health": 20,
+		"speed": 40,
+		"size": 1,
+		"meleeDamage": 15,
+		"meleeAttackSpeed": 1,
+		"meleeAttackRange": 100,
+		"isRanged": false,
+		"rangedDamage": 0,
+		"rangedAttackSpeed": 0,
+		"rangedAttackRange": 0
+	},
+	"slime_2": {
+		"id": "slime_2",
+		"name": "Big Slime",
+		"health": 100,
+		"speed": 50,
+		"size": 2,
+		"meleeDamage": 30,
+		"meleeAttackSpeed": 1,
+		"meleeAttackRange": 100,
+		"isRanged": false,
+		"rangedDamage": 0,
+		"rangedAttackSpeed": 0,
+		"rangedAttackRange": 0
+	},
+	"spit_slime_1": {
+		"id": "spit_slime_1",
+		"name": "Spit Slime",
+		"health": 10,
+		"speed": 60,
+		"size": 0.8,
+		"meleeDamage": 5,
+		"meleeAttackSpeed": 1,
+		"meleeAttackRange": 100,
+		"isRanged": true,
+		"rangedDamage": 10,
+		"rangedAttackSpeed": 0.7,
+		"rangedAttackRange": 300
+	}
+}

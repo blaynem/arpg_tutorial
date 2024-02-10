@@ -10,6 +10,7 @@ const INDICATOR_DAMAGE = preload("res://resources/ui/damage_indicator.tscn")
 @export var hp: int = hp_max : set = _set_hp, get = _get_hp
 @export var defense: int = 0
 @export var SPEED: int = 75
+@export var display_name: String = "Placeholder"
 
 @export var EFFECT_HIT: PackedScene = null
 @export var EFFECT_DIED: PackedScene = null
@@ -17,20 +18,22 @@ const INDICATOR_DAMAGE = preload("res://resources/ui/damage_indicator.tscn")
 @export var canBeKnockedBack: bool = true
 @export var knockback_modifier: float = 0.1
 
-@onready var sprite = $Sprite
-@onready var collisionShape = $CollisionShape
-@onready var animationPlayer = $AnimationPldayer
-@onready var hurtbox = $HurtBox
-@onready var healthbar = $EntityHealthBar
+@onready var collisionShape: CollisionShape2D = $CollisionShape
+@onready var animationPlayer: AnimationPlayer = $AnimationPldayer
+@onready var hurtbox: Area2D = $HurtBox
+@onready var healthbar: TextureProgressBar  = $EntityHealthBar
+@onready var nameBar: Label = $NameBar
 
 func _ready():
 	if healthbar:
 			healthbar.value = hp
 			healthbar.max_value = hp_max
+	if nameBar:
+		nameBar.text = display_name
 
 func _physics_process(delta):
 	move()
-	
+
 func move():
 	move_and_slide()
 
@@ -85,13 +88,13 @@ func spawn_dmgIndicator(damage:int):
 		indicator.label.text = str(damage)
 
 func _on_hurt_box_area_entered(hitbox):
-	if "damage" in hitbox:
-		var base_damage = hitbox.damage
-		var actual_damage = receive_damage(base_damage)
+	# if "damage" in hitbox:
+	# 	var base_damage = hitbox.damage
+	# 	var actual_damage = receive_damage(base_damage)
 		
-		receive_knockback(hitbox.global_position, actual_damage)
-		spawn_effect(EFFECT_HIT)
-		spawn_dmgIndicator(actual_damage)
+	# 	receive_knockback(hitbox.global_position, actual_damage)
+	# 	spawn_effect(EFFECT_HIT)
+	# 	spawn_dmgIndicator(actual_damage)
 		
 	if hitbox.is_in_group("Projectiles"):
 		hitbox.destroy()

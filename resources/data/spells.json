@@ -1,0 +1,46 @@
+{
+    "fireball": {
+        "id": "fireball",
+        "name": "Fireball",
+        "description": "A single fireball",
+        "type": "singleTarget",
+        "maxDistance": 99999,
+        "cooldown": 1,
+        "castTime": 0,
+        "projectileSpeed": 100,
+        "damage": 10
+    },
+    "energyBall": {
+        "id": "energyBall",
+        "name": "Energy Ball",
+        "description": "A slow moving ball of energy that can be cast quickly.",
+        "type": "projectile",
+        "maxDistance": 100,
+        "cooldown": 0.2,
+        "castTime": 0,
+        "projectileSpeed": 50,
+        "damage": 5
+    },
+    "iceSpike": {
+        "id": "iceSpike",
+        "name": "Ice Spike",
+        "description": "Ice Spikes surround the caster and are shot out in all directions.",
+        "type": "projectile",
+        "maxDistance": 10,
+        "cooldown": 3,
+        "castTime": 0,
+        "projectileSpeed": 200,
+        "damage": 5
+    },
+    "rockThrow": {
+        "id": "rockThrow",
+        "name": "Rock Throw",
+        "description": "To be fair, it's a really big rock.",
+        "type": "projectile",
+        "maxDistance": 99999,
+        "cooldown": 5,
+        "castTime": 1,
+        "projectileSpeed": 100,
+        "damage": 100
+    }
+}

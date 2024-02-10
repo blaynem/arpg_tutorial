@@ -10,6 +10,7 @@ var enemy = preload("res://resources/entity/enemy/EnemyBase.tscn")
 var totalAliveMonsters = 0
 var monstersSlain = 0
 
+var enemy_loader = EnemyLoader.get_instance()
 
 func _on_thing_dead():
 	monstersSlain += 1
@@ -22,17 +23,24 @@ func _on_thing_dead():
 func _on_player_base_player_died():
 	gameOverSound.play()
 
-func _on_enemy_spawn_timer_timeout():
+func create_enemy(enemy_name):
+	var enemy_data = enemy_loader.get_data_by_name(enemy_name)
+	if not enemy_data:
+		return
+	# Example: Create enemy node and configure it using data
 	var enemy_instance = enemy.instantiate()
-	enemy_instance._set_player($TileMap/PlayerBase)
-	enemy_instance._set_hp(5)
+	enemy_instance._set_enemy_data(enemy_data)
+	enemy_instance._set_target($TileMap/PlayerBase)
+	enemy_instance.connect("died", _on_thing_dead)
+	
 	add_child(enemy_instance)
 	totalAliveMonsters += 1
 	
-	enemy_instance.connect("died", _on_thing_dead)
-	
 	var nodes = get_tree().get_nodes_in_group("spawn")
 	var node = nodes[randi() % nodes.size()]
-	var position = node.position
-	enemy_instance.position = position
+	enemy_instance.position = node.position
+
+const enemyNames = ["slime_1", "slime_2", "spit_slime_1"]
+func _on_enemy_spawn_timer_timeout():
+	create_enemy(enemyNames[randi() % enemyNames.size()])
 
