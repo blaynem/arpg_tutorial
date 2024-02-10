@@ -2,7 +2,12 @@ extends "res://resources/entity/EntityBase.gd"
 
 signal player_died
 
-@export var spell_scene: PackedScene = preload("res://resources/projectiles/IceSpikes.tscn")
+# Options for spells: fireball , iceSpike, rockThrow, todo: energyBall
+const SPELL_ID = "rockThrow"
+#@export var spell_scene: PackedScene = preload("res://resources/projectiles/IceSpikes.tscn")
+#@export var spell_scene: PackedScene = preload("res://resources/projectiles/Fireball.tscn")
+@export var spell_scene: PackedScene = preload("res://resources/projectiles/RockThrow.tscn")
+
 @export var spellsManager: Node2D
 
 @onready var animations = $AnimationPlayer
@@ -11,8 +16,6 @@ signal player_died
 var lastAnimationDirection: String = "Down"
 const SPELL_DAMAGE: int = 200
 
-# Options for spells: fireball, energyBall, iceSpike, rockThrow
-const SPELL_ID = "iceSpike"
 
 func _ready():
 	if spellsManager:
@@ -76,19 +79,20 @@ func ranged_attack(ranged_direction: Vector2):
 	if spellsManager:
 		# Returns the casted spell data, or null
 		var castedSpell = spellsManager.cast_spell(SPELL_ID)
-		if castedSpell:
-			create_aoe_ice_spikes(castedSpell)
-		
-		#if castedSpell && spell_scene:
-			## TODO: Pick correct projectile here
-			#var projectile = spell_scene.instantiate()
-			## params needed damage dealt, damage type, projectile speed
-			#projectile.set_projectile_data(castedSpell.damage, castedSpell.type, castedSpell.projectileSpeed)
-			#get_tree().current_scene.add_child(projectile)
-			#projectile.global_position = self.global_position
-			#
-			#var projectile_spin = ranged_direction.angle()
-			#projectile.rotation = projectile_spin
-			#projectile.SPEED = castedSpell.projectileSpeed
-			#
-			#attackTimer.start()
+		if SPELL_ID == "iceSpike":
+			if castedSpell:
+				create_aoe_ice_spikes(castedSpell)
+		else:
+			if castedSpell && spell_scene:
+				# TODO: Pick correct projectile here
+				var projectile = spell_scene.instantiate()
+				# params needed damage dealt, damage type, projectile speed
+				projectile.set_projectile_data(castedSpell.damage, castedSpell.type, castedSpell.projectileSpeed)
+				get_tree().current_scene.add_child(projectile)
+				projectile.global_position = self.global_position
+				
+				var projectile_spin = ranged_direction.angle()
+				projectile.rotation = projectile_spin
+				projectile.SPEED = castedSpell.projectileSpeed
+				
+				attackTimer.start()

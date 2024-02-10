@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0oemwjnw3ado" path="res://resources/entity/EntityBase.tscn" id="1_h630j"]
 [ext_resource type="Script" path="res://resources/entity/player/PlayerBase.gd" id="2_d7cve"]
-[ext_resource type="PackedScene" uid="uid://ci5r627im5mrp" path="res://resources/projectiles/IceSpikes.tscn" id="3_y5b1n"]
+[ext_resource type="PackedScene" uid="uid://cxxlrj5ntxpg" path="res://resources/projectiles/RockThrow.tscn" id="3_qu2qt"]
 [ext_resource type="Texture2D" uid="uid://dm8t64qv41ton" path="res://art/old_man_sprite.png" id="4_rraig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ol6"]
@@ -113,7 +113,7 @@ size = Vector2(15, 16)
 [node name="PlayerBase" instance=ExtResource("1_h630j")]
 collision_mask = 18
 script = ExtResource("2_d7cve")
-spell_scene = ExtResource("3_y5b1n")
+spell_scene = ExtResource("3_qu2qt")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("4_rraig")
