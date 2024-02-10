@@ -40,7 +40,8 @@ func create_enemy(enemy_name: String):
 	var node = nodes[randi() % nodes.size()]
 	enemy_instance.position = node.position
 
-const enemyNames = ["slime_1", "slime_2", "spit_slime_1"]
+#const enemyNames = ["slime_1", "slime_2", "spit_slime_1"]
+const enemyNames = ["spit_slime_1"]
 func _on_enemy_spawn_timer_timeout():
 	create_enemy(enemyNames[randi() % enemyNames.size()])
 

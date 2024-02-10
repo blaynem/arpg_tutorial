@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://j30evcnuerav"]
 
-[ext_resource type="PackedScene" uid="uid://bv4mncjbigwgp" path="res://resources/overlap/HitBox.tscn" id="1_cm00n"]
-[ext_resource type="Script" path="res://resources/projectiles/PlayerBigShuriken.gd" id="2_oxuaa"]
+[ext_resource type="PackedScene" uid="uid://bq8n862gtqqxa" path="res://resources/overlap/ProjectileHitBox.tscn" id="1_cm00n"]
+[ext_resource type="Script" path="res://resources/overlap/ProjectileHitBox.gd" id="2_020ys"]
 [ext_resource type="Texture2D" uid="uid://cyjt6e3ybgdwb" path="res://art/BigShuriken.png" id="3_ko7yk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxj3j"]
@@ -47,8 +47,10 @@ _data = {
 
 [node name="PlayerBigShuriken" instance=ExtResource("1_cm00n")]
 collision_mask = 18
-script = ExtResource("2_oxuaa")
-SPEED = 100
+script = ExtResource("2_020ys")
+damage_dealt = 0
+damage_type = "Normal"
+projectile_speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_ko7yk")

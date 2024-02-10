@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cefwset5f07an"]
+
+[ext_resource type="PackedScene" uid="uid://bq8n862gtqqxa" path="res://resources/overlap/ProjectileHitBox.tscn" id="1_j3g5s"]
+
+[node name="EnergyBall" instance=ExtResource("1_j3g5s")]

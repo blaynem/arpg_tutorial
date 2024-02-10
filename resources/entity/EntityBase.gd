@@ -80,7 +80,7 @@ func spawn_dmgIndicator(damage:int):
 	if indicator:
 		indicator.label.text = str(damage)
 
-func _on_hurt_box_area_entered(hitbox):
+func _on_hurt_box_area_entered(area_entered):
 	pass
 
 func _on_Entity_died():

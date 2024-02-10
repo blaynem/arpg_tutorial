@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bt7gxb722f7am" path="res://resources/effects/hit_effect.tscn" id="2_mrjjy"]
 [ext_resource type="PackedScene" uid="uid://06bpte4ipw7t" path="res://resources/overlap/HurtBox.tscn" id="2_rdp35"]
 [ext_resource type="PackedScene" uid="uid://bt12aujcuv6yj" path="res://resources/effects/DeathEffect.tscn" id="3_2qsey"]
-[ext_resource type="PackedScene" uid="uid://bv4mncjbigwgp" path="res://resources/overlap/HitBox.tscn" id="3_sgv8u"]
 [ext_resource type="Texture2D" uid="uid://ru3ny0eo6mia" path="res://art/player sprite.png" id="4_nugk7"]
 [ext_resource type="PackedScene" uid="uid://buiojmlhxqyfe" path="res://resources/ui/entity_health_bar.tscn" id="6_1hus0"]
+[ext_resource type="PackedScene" uid="uid://bv4mncjbigwgp" path="res://resources/overlap/EnemyHitBox.tscn" id="6_dc3iy"]
 [ext_resource type="Texture2D" uid="uid://bbxqyii40fy3p" path="res://art/healthbar_empty.png" id="7_vbhy3"]
 [ext_resource type="Texture2D" uid="uid://cfx7qlvtxw1gi" path="res://art/healthbar_border.png" id="8_y38jc"]
 [ext_resource type="Texture2D" uid="uid://c1t6h7s1j1twc" path="res://art/healthbar_full.png" id="9_iwlwe"]
@@ -49,13 +49,13 @@ root_node = NodePath("../CollisionShape2D")
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_unhda")
 
-[node name="HitBox" parent="." instance=ExtResource("3_sgv8u")]
+[node name="EnemyHitBox" parent="." instance=ExtResource("6_dc3iy")]
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
+[node name="CollisionShape2D" parent="EnemyHitBox" index="0"]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_ty5ay")
 
-[node name="VisibleOnScreenNotifier2D" parent="HitBox" index="1"]
+[node name="VisibleOnScreenNotifier2D" parent="EnemyHitBox" index="1"]
 position = Vector2(-1.49012e-07, -7.5)
 scale = Vector2(0.8, 0.85)
 
@@ -82,4 +82,4 @@ text = "Placeholder"
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]
-[editable path="HitBox"]
+[editable path="EnemyHitBox"]

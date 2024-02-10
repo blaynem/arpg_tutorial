@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ci5r627im5mrp"]
 
-[ext_resource type="PackedScene" uid="uid://bv4mncjbigwgp" path="res://resources/overlap/HitBox.tscn" id="1_argsj"]
-[ext_resource type="Script" path="res://resources/projectiles/PlayerBigShuriken.gd" id="2_7ait4"]
+[ext_resource type="PackedScene" uid="uid://bq8n862gtqqxa" path="res://resources/overlap/ProjectileHitBox.tscn" id="1_hvn6n"]
+[ext_resource type="Script" path="res://resources/overlap/ProjectileHitBox.gd" id="2_6fxot"]
 [ext_resource type="Texture2D" uid="uid://p7dol77dskk3" path="res://resources/sprites/projectiles/IceSpike.png" id="3_643bk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nsuxf"]
@@ -48,11 +48,13 @@ _data = {
 "shoot": SubResource("Animation_52ot2")
 }
 
-[node name="IceSpikes" instance=ExtResource("1_argsj")]
+[node name="IceSpikes" instance=ExtResource("1_hvn6n")]
 scale = Vector2(0.6, 0.6)
 collision_mask = 18
-script = ExtResource("2_7ait4")
-SPEED = 100
+script = ExtResource("2_6fxot")
+damage_dealt = 0
+damage_type = "Normal"
+projectile_speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_643bk")
@@ -64,7 +66,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nsuxf")
 disabled = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" groups=["Projectile"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_6ewh5")
 }

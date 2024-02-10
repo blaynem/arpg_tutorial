@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://efra6w34pgwx"]
+[gd_scene load_steps=8 format=3 uid="uid://efra6w34pgwx"]
 
 [ext_resource type="PackedScene" uid="uid://c0oemwjnw3ado" path="res://resources/entity/EntityBase.tscn" id="1_q4prd"]
 [ext_resource type="Texture2D" uid="uid://c6qonn504dmwa" path="res://art/Slime3.png" id="2_aho54"]
 [ext_resource type="Script" path="res://resources/entity/enemy/EnemyBase.gd" id="2_wnoke"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ll0ti"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lyoh"]
+radius = 9.0
 
 [sub_resource type="Animation" id="Animation_wpkkx"]
 resource_name = "walkDown"
@@ -17,9 +17,6 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i8wdb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5lyoh"]
-radius = 9.0
-
 [node name="EnemyBase" instance=ExtResource("1_q4prd")]
 collision_layer = 2
 collision_mask = 19
@@ -30,16 +27,16 @@ hp = null
 texture = ExtResource("2_aho54")
 vframes = 4
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="HitBox#CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_ll0ti")
+shape = SubResource("CircleShape2D_5lyoh")
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_udt8a")
 }
 
-[node name="HurtBox" parent="." index="3"]
+[node name="HurtBox" parent="." index="4"]
 collision_layer = 2
 collision_mask = 8
 monitorable = false
@@ -47,17 +44,6 @@ monitorable = false
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_i8wdb")
-
-[node name="HitBox" parent="." index="4"]
-collision_layer = 2
-monitoring = false
-
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_5lyoh")
-
-[node name="VisibleOnScreenNotifier2D" parent="HitBox" index="1"]
-position = Vector2(0, -6)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="6"]
 debug_enabled = true
@@ -69,4 +55,4 @@ autostart = true
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="HurtBox"]
-[editable path="HitBox"]
+[editable path="EnemyHitBox"]

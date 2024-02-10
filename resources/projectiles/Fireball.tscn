@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c314s6g3thtjf"]
+[gd_scene load_steps=7 format=3 uid="uid://c314s6g3thtjf"]
 
-[ext_resource type="PackedScene" uid="uid://bv4mncjbigwgp" path="res://resources/overlap/HitBox.tscn" id="1_ecvs5"]
-[ext_resource type="Script" path="res://resources/projectiles/PlayerBigShuriken.gd" id="2_ykala"]
+[ext_resource type="PackedScene" uid="uid://bq8n862gtqqxa" path="res://resources/overlap/ProjectileHitBox.tscn" id="1_ecvs5"]
 [ext_resource type="Texture2D" uid="uid://dvmbcy7jemh10" path="res://resources/sprites/projectiles/Fireball.png" id="3_1v4fc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxj3j"]
@@ -72,8 +71,6 @@ _data = {
 
 [node name="Fireball" instance=ExtResource("1_ecvs5")]
 collision_mask = 18
-script = ExtResource("2_ykala")
-SPEED = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 rotation = 1.5708
@@ -81,17 +78,14 @@ texture = ExtResource("3_1v4fc")
 hframes = 4
 
 [node name="CollisionShape2D" parent="." index="1"]
-visible = false
 shape = SubResource("CircleShape2D_xxj3j")
-disabled = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" groups=["Projectile"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_6ewh5")
 }
 autoplay = "RESET"
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
-visible = false
 position = Vector2(0, 3.57628e-07)
 scale = Vector2(0.6, 0.6)

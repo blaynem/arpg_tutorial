@@ -3,10 +3,10 @@ extends "res://resources/entity/EntityBase.gd"
 signal player_died
 
 # Options for spells: fireball , iceSpike, rockThrow, todo: energyBall
-const SPELL_ID = "fireball"
+const SPELL_ID = "rockThrow"
 #@export var spell_scene: PackedScene = preload("res://resources/projectiles/IceSpikes.tscn")
-@export var spell_scene: PackedScene = preload("res://resources/projectiles/Fireball.tscn")
-#@export var spell_scene: PackedScene = preload("res://resources/projectiles/RockThrow.tscn")
+#@export var spell_scene: PackedScene = preload("res://resources/projectiles/Fireball.tscn")
+@export var spell_scene: PackedScene = preload("res://resources/projectiles/RockThrow.tscn")
 
 @export var spellsManager: Node2D
 
@@ -58,8 +58,7 @@ func create_aoe_ice_spikes(castedSpell):
 
 	for i in range(number_of_icicles):
 		var icicle_instance = spell_scene.instantiate()
-		icicle_instance.set_projectile_data(castedSpell.damage, castedSpell.type, castedSpell.projectileSpeed)
-		icicle_instance.SPEED = castedSpell.projectileSpeed
+		icicle_instance.set_projectile_data(castedSpell)
 
 		# Instead of adding icicles as children of the character,
 		# add them to a fixed node in the scene, like the "World" node or an "Effects" node.
@@ -85,13 +84,11 @@ func ranged_attack(ranged_direction: Vector2):
 			if castedSpell && spell_scene:
 				# TODO: Pick correct projectile here
 				var projectile = spell_scene.instantiate()
-				# params needed damage dealt, damage type, projectile speed
-				projectile.set_projectile_data(castedSpell.damage, castedSpell.type, castedSpell.projectileSpeed)
+				projectile.set_projectile_data(castedSpell)
 				get_tree().current_scene.add_child(projectile)
 				projectile.global_position = self.global_position
 				
 				var projectile_spin = ranged_direction.angle()
 				projectile.rotation = projectile_spin
-				projectile.SPEED = castedSpell.projectileSpeed
 				
 				attackTimer.start()
