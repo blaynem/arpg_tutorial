@@ -8,7 +8,6 @@ const SPELL_ID = "rockThrow"
 #@export var spell_scene: PackedScene = preload("res://resources/projectiles/Fireball.tscn")
 @export var spell_scene: PackedScene = preload("res://resources/projectiles/RockThrow.tscn")
 
-@export var spellsManager: Node2D
 
 @onready var animations = $AnimationPlayer
 @onready var attackTimer = $AttackTimer
@@ -17,8 +16,7 @@ var lastAnimationDirection: String = "Down"
 const SPELL_DAMAGE: int = 0
 
 func _ready():
-	if spellsManager:
-		spellsManager.add_player_spell(SPELL_ID)
+	SpellManager.add_spell_id_to_list(SPELL_ID)
 
 func _physics_process(delta):
 	handleInput()
@@ -74,21 +72,20 @@ func create_aoe_ice_spikes(castedSpell):
 
 
 func ranged_attack(ranged_direction: Vector2):
-	if spellsManager:
-		# Returns the casted spell data, or null
-		var castedSpell = spellsManager.cast_spell(SPELL_ID)
-		if SPELL_ID == "iceSpike":
-			if castedSpell:
-				create_aoe_ice_spikes(castedSpell)
-		else:
-			if castedSpell && spell_scene:
-				# TODO: Pick correct projectile here
-				var projectile = spell_scene.instantiate()
-				projectile.set_projectile_data(castedSpell)
-				get_tree().current_scene.add_child(projectile)
-				projectile.global_position = self.global_position
-				
-				var projectile_spin = ranged_direction.angle()
-				projectile.rotation = projectile_spin
-				
-				attackTimer.start()
+	# Returns the casted spell data, or null
+	var castedSpell = SpellManager.cast_spell(SPELL_ID)
+	if SPELL_ID == "iceSpike":
+		if castedSpell:
+			create_aoe_ice_spikes(castedSpell)
+	else:
+		if castedSpell && spell_scene:
+			# TODO: Pick correct projectile here
+			var projectile = spell_scene.instantiate()
+			projectile.set_projectile_data(castedSpell)
+			get_tree().current_scene.add_child(projectile)
+			projectile.global_position = self.global_position
+			
+			var projectile_spin = ranged_direction.angle()
+			projectile.rotation = projectile_spin
+			
+			attackTimer.start()

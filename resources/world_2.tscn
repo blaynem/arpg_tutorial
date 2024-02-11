@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bc5ar7y0sgpyi"]
+[gd_scene load_steps=18 format=3 uid="uid://bc5ar7y0sgpyi"]
 
 [ext_resource type="Script" path="res://resources/world_2.gd" id="1_7g6og"]
 [ext_resource type="Texture2D" uid="uid://1ggml8c8kvug" path="res://art/TilesetNature.png" id="2_allxo"]
@@ -6,8 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://2gjj3i3g4m34" path="res://art/sound_effects/GameOver.wav" id="4_d4w2r"]
 [ext_resource type="PackedScene" uid="uid://b8geipu6lmq42" path="res://resources/entity/player/PlayerBase.tscn" id="5_w4baf"]
 [ext_resource type="Script" path="res://resources/Camera2D.gd" id="6_1tej4"]
-[ext_resource type="PackedScene" uid="uid://cxxlrj5ntxpg" path="res://resources/projectiles/RockThrow.tscn" id="6_x620w"]
-[ext_resource type="Script" path="res://resources/SpellManager.gd" id="7_m6oqh"]
 [ext_resource type="Shader" path="res://art/SimpleWater.gdshader" id="8_hqjbg"]
 [ext_resource type="Texture2D" uid="uid://ii2ec1tklmgm" path="res://art/Godot_icon.svg" id="8_jreuf"]
 
@@ -2516,10 +2514,8 @@ layer_1/y_sort_enabled = true
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(1048560, 851969, 8, 1048561, 851969, 8, 1048562, 851969, 8, 1048563, 851969, 8, 1048564, 851969, 8, 1048565, 851969, 8, 1048566, 851969, 8, 1048567, 851969, 8, 1048568, 851969, 8, 1048569, 851969, 8, 1048570, 851969, 8, 1048571, 851969, 8, 1048572, 851969, 8, 1048573, 851969, 8, 1048574, 851969, 8, 1048575, 851969, 8, 983040, 851969, 8, 983041, 851969, 8, 983042, 851969, 8, 983043, 851969, 8, 983044, 851969, 8, 983045, 851969, 8, 983046, 851969, 8, 983047, 851969, 8, 983048, 851969, 8, 983049, 851969, 8, 983050, 851969, 8, 983051, 851969, 8, 983052, 851969, 8, 983053, 851969, 8, 983054, 851969, 8, 983055, 851969, 8, 983056, 851969, 8, 917520, 851969, 8, 851984, 851969, 8, 786448, 851969, 8, 720912, 851969, 8, 655376, 851969, 8, 589840, 851969, 8, 524304, 851969, 8, 458768, 851969, 8, 393232, 851969, 8, 327696, 851969, 8, 262160, 851969, 8, 196624, 851969, 8, -65520, 851969, 8, 16, 851969, 8, 65552, 851969, 8, 131088, 851969, 8, -131056, 851969, 8, -196592, 851969, 8, -262128, 851969, 8, -327664, 851969, 8, -393200, 851969, 8, -458736, 851969, 8, -524272, 851969, 8, -589808, 851969, 8, -655344, 851969, 8, -720880, 851969, 8, -786416, 851969, 8, -851952, 851969, 8, -917488, 851969, 8, -983024, 851969, 8, -1048560, 851969, 8, -1048561, 851969, 8, -1048562, 851969, 8, -1048563, 851969, 8, -1048564, 851969, 8, -1048565, 851969, 8, -1048566, 851969, 8, -1048567, 851969, 8, -1048568, 851969, 8, -1048569, 851969, 8, -1048570, 851969, 8, -1048571, 851969, 8, -1048572, 851969, 8, -1048573, 851969, 8, -1048574, 851969, 8, -1048575, 851969, 8, -1048576, 851969, 8, -983041, 851969, 8, -983042, 851969, 8, -983043, 851969, 8, -983044, 851969, 8, -983045, 851969, 8, -983046, 851969, 8, -983047, 851969, 8, -983048, 851969, 8, -983049, 851969, 8, -983050, 851969, 8, -983051, 851969, 8, -983052, 851969, 8, -983053, 851969, 8, -983054, 851969, 8, -983055, 851969, 8, -983056, 851969, 8, -917520, 851969, 8, -851984, 851969, 8, -786448, 851969, 8, -720912, 851969, 8, -655376, 851969, 8, -458768, 851969, 8, -393232, 851969, 8, -589840, 851969, 8, -524304, 851969, 8, -327696, 851969, 8, -262160, 851969, 8, -196624, 851969, 8, -131088, 851969, 8, -65552, 851969, 8, -16, 851969, 8, 65520, 851969, 8, 131056, 851969, 8, 196592, 851969, 8, 262128, 851969, 8, 327664, 851969, 8, 393200, 851969, 8, 458736, 851969, 8, 524272, 851969, 8, 589808, 851969, 8, 655344, 851969, 8, 720880, 851969, 8, 786416, 851969, 8, 851952, 851969, 8, 917488, 851969, 8, 983024, 851969, 8, -589818, 1114113, 10, -393225, 1376257, 10, -655365, 1376257, 10, 655365, 1376257, 10, 524283, 1114113, 10, 393225, 1376257, 10)
 
-[node name="PlayerBase" parent="TileMap" node_paths=PackedStringArray("spellsManager") instance=ExtResource("5_w4baf")]
+[node name="PlayerBase" parent="TileMap" instance=ExtResource("5_w4baf")]
 position = Vector2(-40, 32)
-spell_scene = ExtResource("6_x620w")
-spellsManager = NodePath("../../SpellManager")
 
 [node name="Camera2D" type="Camera2D" parent="TileMap/PlayerBase" node_paths=PackedStringArray("tilemap")]
 limit_left = 0
@@ -2552,9 +2548,6 @@ position = Vector2(432, 448)
 [node name="Position 4" type="Marker2D" parent="." groups=["spawn"]]
 position = Vector2(104, 448)
 
-[node name="SpellManager" type="Node2D" parent="."]
-script = ExtResource("7_m6oqh")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_uq0ys")
@@ -2562,5 +2555,4 @@ position = Vector2(264, 262)
 scale = Vector2(0.5625, 0.535156)
 texture = ExtResource("8_jreuf")
 
-[connection signal="died" from="TileMap/PlayerBase" to="." method="_on_player_base_died"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
